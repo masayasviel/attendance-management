@@ -16,6 +16,18 @@
     "lineEnding": "lf",
     "lineWidth": 120
   },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "correctness": {
+        "noUnusedImports": "error"
+      },
+      "style": {
+        "noVar": "error"
+      }
+    }
+  },
   "javascript": {
     "formatter": {
       "enabled": true,
@@ -29,16 +41,20 @@
       "unsafeParameterDecoratorsEnabled": true
     }
   },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "correctness": {
-        "noUnusedImports": "error"
-      },
-      "style": {
-        "noVar": "error"
-      }
+  "css": {
+    "parser": {
+      "cssModules": true
+    },
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineEnding": "lf",
+      "quoteStyle": "single",
+      "lineWidth": 100
+    },
+    "linter": {
+      "enabled": true
     }
   }
 }
