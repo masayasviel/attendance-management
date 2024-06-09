@@ -13,6 +13,13 @@ npm i
 ng serve
 ```
 
+# Linting, formatting
+
+```sh
+npx @biomejs/biome lint --write ./src
+npx @biomejs/biome format --write ./src
+```
+
 # Editor
 
 ## vscode
