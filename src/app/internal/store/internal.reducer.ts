@@ -25,7 +25,7 @@ export const InternalReducer = createReducer(
   initialState,
   // 出勤
   on(InternalAction.setAttendanceAtWork, (state) => {
-    console.log(state);
+    const currentState = state.records ?? [];
     const newRecord: RecordInterfaceForState = {
       date: dayjs().format('YYYY/MM/DD'),
       start: dayjs().format(),
@@ -38,7 +38,7 @@ export const InternalReducer = createReducer(
     };
     return {
       ...state,
-      records: [...state.records, newRecord],
+      records: [...currentState, newRecord],
     };
   }),
   // リセット
