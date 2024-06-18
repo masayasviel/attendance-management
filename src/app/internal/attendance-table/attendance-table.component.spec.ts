@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { type ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AttendanceTableComponent } from './attendance-table.component';
 
@@ -8,10 +8,9 @@ describe('AttendanceTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AttendanceTableComponent]
-    })
-    .compileComponents();
-    
+      imports: [AttendanceTableComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(AttendanceTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

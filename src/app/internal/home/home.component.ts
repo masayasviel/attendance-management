@@ -9,5 +9,5 @@ import { AttendanceTableComponent } from '../attendance-table/attendance-table.c
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  user = "横井";
+  user = '横井';
 }
