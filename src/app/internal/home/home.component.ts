@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AttendanceTableComponent } from '../attendance-table/attendance-table.component';
+import { AttendanceTableComponent } from './attendance-table/attendance-table.component';
 
 @Component({
   selector: 'app-home',
