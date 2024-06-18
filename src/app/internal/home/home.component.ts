@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { InternalFacade } from '../store/internal.facade';
 import { AttendanceTableComponent } from './attendance-table/attendance-table.component';
 
 @Component({
@@ -9,5 +10,7 @@ import { AttendanceTableComponent } from './attendance-table/attendance-table.co
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  user = '横井';
+  private internalFacade = inject(InternalFacade);
+
+  records$ = this.internalFacade.recordsConvertToDate$;
 }
