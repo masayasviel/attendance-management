@@ -26,6 +26,8 @@ export class AttendanceTableComponent {
 
   displayAdjustment(record: RecordInterface): string {
     const { adjustment } = record;
-    return `${adjustment.hour}:${adjustment.minute}`;
+    const zeroPaddingAdjustmentHour = adjustment.hour.toString().padStart(2, '0');
+    const zeroPaddingAdjustmentMinute = adjustment.minute.toString().padStart(2, '0');
+    return `${zeroPaddingAdjustmentHour}:${zeroPaddingAdjustmentMinute}`;
   }
 }

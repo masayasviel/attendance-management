@@ -40,13 +40,19 @@ export class InternalFacade {
     this.store.dispatch(InternalActions.setAttendanceAtWork());
   }
 
+  assetTestData(): void {
+    this.store.dispatch(InternalActions.assetMockData());
+  }
+
   private computeWorkingHour(start: Dayjs, finish: Dayjs | null): string {
     if (finish == null) {
       return '-';
     }
     const diffHour = finish.diff(start, 'hour');
-    const diffMinute = finish.diff(start, 'minute');
-    return `${diffHour}:${diffMinute}`;
+    const zeroPaddingDiffHour = diffHour.toString().padStart(2, '0');
+    const diffMinute = finish.diff(start, 'minute') % 60;
+    const zeroPaddingDiffMinute = diffMinute.toString().padStart(2, '0');
+    return `${zeroPaddingDiffHour}:${zeroPaddingDiffMinute}`;
   }
 
   private computeDifference(

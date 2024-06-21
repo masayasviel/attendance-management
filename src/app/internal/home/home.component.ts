@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, type OnInit, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { InternalFacade } from '../store/internal.facade';
 import { AttendanceTableComponent } from './attendance-table/attendance-table.component';
@@ -11,8 +11,12 @@ import { AttendanceTableComponent } from './attendance-table/attendance-table.co
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   private internalFacade = inject(InternalFacade);
 
   records$ = this.internalFacade.recordsConvertToDate$;
+
+  ngOnInit(): void {
+    this.internalFacade.assetTestData();
+  }
 }
