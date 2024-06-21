@@ -1,7 +1,7 @@
 import type { Dayjs } from 'dayjs';
 
 export interface RecordInterface {
-  date: Dayjs;
+  date: string;
   start: Dayjs;
   finish: Dayjs | null;
   adjustment: {

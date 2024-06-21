@@ -15,7 +15,7 @@ export class InternalFacade {
   recordsConvertToDate$: Observable<RecordInterface[]> = this.store.select(selectRecords).pipe(
     map((item) =>
       item.map((item) => ({
-        date: dayjs(item.date),
+        date: item.date,
         start: dayjs(item.start),
         finish: item.finish ? dayjs(item.finish) : null,
         adjustment: { ...item.adjustment },
