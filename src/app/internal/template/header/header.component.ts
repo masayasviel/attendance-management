@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { InternalFacade } from '../../store/internal.facade';
 
 @Component({
   selector: 'app-header',
@@ -10,15 +9,6 @@ import { InternalFacade } from '../../store/internal.facade';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  private internalFacade = inject(InternalFacade);
-
-  /** 出勤 */
-  onClickAttendanceAtWorkButton(): void {
-    this.internalFacade.setAttendanceAtWork();
-  }
-
-  /** リセット */
-  onClickResetButton(): void {
-    this.internalFacade.reset();
-  }
+  emitAttendanceAtWork = output<void>();
+  emitReset = output<void>();
 }

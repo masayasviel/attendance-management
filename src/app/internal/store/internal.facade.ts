@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { type Observable, map } from 'rxjs';
 import type { RecordInterface } from '../interfaces/record.interface';
 import * as InternalActions from './internal.actions';
-import { selectRecordsConvertToDate } from './internal.selector';
+import { selectRecords } from './internal.selector';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ import { selectRecordsConvertToDate } from './internal.selector';
 export class InternalFacade {
   private store = inject(Store);
 
-  recordsConvertToDate$: Observable<RecordInterface[]> = this.store.select(selectRecordsConvertToDate).pipe(
+  recordsConvertToDate$: Observable<RecordInterface[]> = this.store.select(selectRecords).pipe(
     map((item) =>
       item.map((item) => ({
         date: dayjs(item.date),
@@ -22,6 +22,8 @@ export class InternalFacade {
       })),
     ),
   );
+
+  signalRecords = this.store.selectSignal(selectRecords);
 
   reset(): void {
     this.store.dispatch(InternalActions.reset());

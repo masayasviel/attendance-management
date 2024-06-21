@@ -1,4 +1,7 @@
-<app-header></app-header>
+<app-header
+  (emitAttendanceAtWork)="attendanceAtWork()"
+  (emitReset)="reset()"
+></app-header>
 
 <div class="m-3">
   <router-outlet></router-outlet>

@@ -3,4 +3,4 @@ import { InternalFeatureKey, type State } from './internal.reducer';
 
 export const selectAppFeature = createFeatureSelector<State>(InternalFeatureKey);
 
-export const selectRecordsConvertToDate = createSelector(selectAppFeature, (state) => state.records);
+export const selectRecords = createSelector(selectAppFeature, (state) => state?.records ?? []);
