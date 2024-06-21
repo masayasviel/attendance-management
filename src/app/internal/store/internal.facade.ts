@@ -1,9 +1,10 @@
 import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import dayjs from 'dayjs';
+import dayjs, { type Dayjs } from 'dayjs';
 import { type Observable, map } from 'rxjs';
 import type { RecordInterface } from '../interfaces/record.interface';
 import * as InternalActions from './internal.actions';
+import type { RecordInterfaceForState } from './internal.reducer';
 import { selectRecords } from './internal.selector';
 
 @Injectable({
@@ -14,12 +15,18 @@ export class InternalFacade {
 
   recordsConvertToDate$: Observable<RecordInterface[]> = this.store.select(selectRecords).pipe(
     map((item) =>
-      item.map((item) => ({
-        date: item.date,
-        start: dayjs(item.start),
-        finish: item.finish ? dayjs(item.finish) : null,
-        adjustment: { ...item.adjustment },
-      })),
+      item.map((v) => {
+        const start = dayjs(v.start);
+        const finish = v.finish ? dayjs(v.finish) : null;
+        return {
+          date: v.date,
+          start,
+          finish,
+          adjustment: { ...v.adjustment },
+          workingHour: this.computeWorkingHour(start, finish),
+          difference: this.computeDifference(start, finish, v.adjustment),
+        };
+      }),
     ),
   );
 
@@ -31,5 +38,27 @@ export class InternalFacade {
 
   setAttendanceAtWork(): void {
     this.store.dispatch(InternalActions.setAttendanceAtWork());
+  }
+
+  private computeWorkingHour(start: Dayjs, finish: Dayjs | null): string {
+    if (finish == null) {
+      return '-';
+    }
+    const diffHour = finish.diff(start, 'hour');
+    const diffMinute = finish.diff(start, 'minute');
+    return `${diffHour}:${diffMinute}`;
+  }
+
+  private computeDifference(
+    start: Dayjs,
+    finish: Dayjs | null,
+    adjustment: RecordInterfaceForState['adjustment'],
+  ): string {
+    if (finish == null) {
+      return '-';
+    }
+    const diff = finish.subtract(adjustment.hour, 'hour').subtract(adjustment.minute, 'minute');
+    const diffMilliSecond = diff.diff(start);
+    return `${diffMilliSecond}`;
   }
 }

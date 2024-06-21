@@ -2,12 +2,11 @@ import { createReducer, on } from '@ngrx/store';
 import dayjs from 'dayjs';
 import * as InternalAction from './internal.actions';
 
-interface RecordInterfaceForState {
+export interface RecordInterfaceForState {
   date: string;
   start: string;
   finish: string | null;
   adjustment: {
-    ope: 'plus' | 'minus';
     hour: number;
     minute: number;
   };
@@ -31,7 +30,6 @@ export const InternalReducer = createReducer(
       start: dayjs().format(),
       finish: null,
       adjustment: {
-        ope: 'plus',
         hour: 0,
         minute: 0,
       },

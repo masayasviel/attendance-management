@@ -5,8 +5,9 @@ export interface RecordInterface {
   start: Dayjs;
   finish: Dayjs | null;
   adjustment: {
-    ope: 'plus' | 'minus';
     hour: number;
     minute: number;
   };
+  workingHour: string;
+  difference: string;
 }

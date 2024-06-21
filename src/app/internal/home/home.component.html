@@ -1,1 +1,3 @@
-<app-attendance-table></app-attendance-table>
+<mat-card>
+  <app-attendance-table [records]="(records$ | async) ?? []"></app-attendance-table>
+</mat-card>
