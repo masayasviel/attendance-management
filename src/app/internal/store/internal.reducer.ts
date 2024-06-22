@@ -3,11 +3,17 @@ import dayjs from 'dayjs';
 import * as InternalAction from './internal.actions';
 
 export interface RecordInterfaceForState {
+  /** 日付 */
   date: string;
+  /** 出勤時刻 */
   start: string;
+  /** 退勤時刻 */
   finish: string | null;
+  /** 調整分 */
   adjustment: {
+    /** 時 */
     hour: number;
+    /** 分 */
     minute: number;
   };
 }
