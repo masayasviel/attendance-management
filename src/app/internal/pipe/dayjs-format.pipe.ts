@@ -10,6 +10,6 @@ export class DayjsFormatPipe implements PipeTransform {
     if (!value) {
       return '-';
     }
-    return value.format('YYYY-MM-DD HH:mm');
+    return value.format('HH:mm');
   }
 }
