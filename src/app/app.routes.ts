@@ -6,7 +6,7 @@ import { TemplateComponent } from './internal/template/template.component';
 
 const localStorageSyncReducer: MetaReducer<State, Action> = (reducer) =>
   localStorageSync({
-    keys: ['records'],
+    keys: ['records', 'absenteeismCount'],
     rehydrate: true,
     storage: localStorage,
     storageKeySerializer: (key) => `attendance_management_for_${key}`,

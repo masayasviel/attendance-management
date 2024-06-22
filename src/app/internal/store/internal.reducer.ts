@@ -13,10 +13,14 @@ export interface RecordInterfaceForState {
 }
 
 export interface State {
+  /** 欠勤数 */
+  absenteeismCount: number;
+  /** 勤怠記録 */
   records: RecordInterfaceForState[];
 }
 
 export const initialState: State = {
+  absenteeismCount: 0,
   records: [],
 };
 
@@ -138,6 +142,7 @@ export const InternalReducer = createReducer(
   on(InternalAction.assetMockData, (state) => {
     return {
       ...state,
+      absenteeismCount: 2,
       records: testData,
     };
   }),
