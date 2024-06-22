@@ -19,4 +19,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.internalFacade.assetTestData();
   }
+
+  onClickRow(date: string): void {
+    console.log(`on click row date = ${date}`);
+  }
+
+  onClickDeleteButton(date: string): void {
+    console.log(`on click delete button date = ${date}`);
+  }
 }

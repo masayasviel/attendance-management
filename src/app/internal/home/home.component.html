@@ -1,3 +1,7 @@
 <mat-card>
-  <app-attendance-table [records]="(records$ | async) ?? []"></app-attendance-table>
+  <app-attendance-table
+    [records]="(records$ | async) ?? []"
+    (emitOnClickRow)="onClickRow($event)"
+    (emitOnClickDelete)="onClickDeleteButton($event)"
+  ></app-attendance-table>
 </mat-card>

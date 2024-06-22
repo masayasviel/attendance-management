@@ -14,7 +14,8 @@ import { DayjsFormatPipe } from '../../pipe/dayjs-format.pipe';
 })
 export class AttendanceTableComponent {
   records = input.required<RecordInterface[]>();
-  emitDelete = output<string>();
+  emitOnClickDelete = output<string>();
+  emitOnClickRow = output<string>();
   readonly displayedColumns = ['date', 'start', 'finish', 'workingHour', 'adjustment', 'difference', 'delete'];
   dataSource = new MatTableDataSource<RecordInterface>([]);
 
@@ -29,5 +30,14 @@ export class AttendanceTableComponent {
     const zeroPaddingAdjustmentHour = adjustment.hour.toString().padStart(2, '0');
     const zeroPaddingAdjustmentMinute = adjustment.minute.toString().padStart(2, '0');
     return `${zeroPaddingAdjustmentHour}:${zeroPaddingAdjustmentMinute}`;
+  }
+
+  onClickRow(record: RecordInterface) {
+    this.emitOnClickRow.emit(record.date);
+  }
+
+  onClickDeleteButton($event: MouseEvent, record: RecordInterface) {
+    $event.stopPropagation();
+    this.emitOnClickDelete.emit(record.date);
   }
 }
