@@ -14,7 +14,7 @@ import { AttendanceTableComponent } from './attendance-table/attendance-table.co
 export class HomeComponent implements OnInit {
   private internalFacade = inject(InternalFacade);
 
-  records$ = this.internalFacade.recordsConvertToDate$;
+  protected records$ = this.internalFacade.recordsConvertToDate$;
 
   ngOnInit(): void {
     this.internalFacade.assetTestData();

@@ -16,8 +16,16 @@ export class AttendanceTableComponent {
   records = input.required<RecordInterface[]>();
   emitOnClickDelete = output<string>();
   emitOnClickRow = output<string>();
-  readonly displayedColumns = ['date', 'start', 'finish', 'workingHour', 'adjustment', 'difference', 'delete'];
-  dataSource = new MatTableDataSource<RecordInterface>([]);
+  protected readonly displayedColumns = [
+    'date',
+    'start',
+    'finish',
+    'workingHour',
+    'adjustment',
+    'difference',
+    'delete',
+  ];
+  protected dataSource = new MatTableDataSource<RecordInterface>([]);
 
   constructor() {
     effect(() => {
