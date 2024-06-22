@@ -1,0 +1,28 @@
+mat-table {
+  width: 100%;
+  display: table;
+  .mat-column-date {
+    width: 10%;
+  }
+  .mat-column-start {
+    width: 10%;
+  }
+  .mat-column-finish {
+    width: 10%;
+  }
+  .mat-column-workingHour {
+    width: 15%;
+  }
+  .mat-column-workingHour {
+    width: 15%;
+  }
+  .mat-column-adjustment {
+    width: 15%;
+  }
+  .mat-column-difference {
+    width: 15%;
+  }
+  .mat-column-delete {
+    width: 10%;
+  }
+}
