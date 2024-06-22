@@ -133,7 +133,7 @@ export const InternalReducer = createReducer(
     };
   }),
   // リセット
-  on(InternalAction.reset, (state) => initialState),
+  on(InternalAction.reset, () => initialState),
   // テストデータの挿入
   on(InternalAction.assetMockData, (state) => {
     return {
