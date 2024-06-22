@@ -1,6 +1,11 @@
 mat-table {
   width: 100%;
   display: table;
+
+  .table-row:hover {
+    background: whitesmoke;
+  }
+
   .mat-column-date {
     width: 10%;
   }
