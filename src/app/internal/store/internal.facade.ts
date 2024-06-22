@@ -48,10 +48,8 @@ export class InternalFacade {
     if (finish == null) {
       return '-';
     }
-    const diffHour = finish.diff(start, 'hour');
-    const zeroPaddingDiffHour = diffHour.toString().padStart(2, '0');
-    const diffMinute = finish.diff(start, 'minute') % 60;
-    const zeroPaddingDiffMinute = diffMinute.toString().padStart(2, '0');
+    const zeroPaddingDiffHour = this.diffHourZeroPadding(finish, start);
+    const zeroPaddingDiffMinute = this.diffMinuteZeroPadding(finish, start);
     return `${zeroPaddingDiffHour}:${zeroPaddingDiffMinute}`;
   }
 
@@ -65,6 +63,25 @@ export class InternalFacade {
     }
     const diff = finish.subtract(adjustment.hour, 'hour').subtract(adjustment.minute, 'minute');
     const diffMilliSecond = diff.diff(start);
-    return `${diffMilliSecond}`;
+    const zeroPaddingDiffHour = this.diffHourZeroPadding(diff, start, true);
+    const zeroPaddingDiffMinute = this.diffMinuteZeroPadding(diff, start, true);
+    const ope = diffMilliSecond > 0 ? '+' : '-';
+    return `${ope}${zeroPaddingDiffHour}:${zeroPaddingDiffMinute}`;
+  }
+
+  private diffHourZeroPadding(a: Dayjs, b: Dayjs, isAbs = false): string {
+    let res = a.diff(b, 'hour') % 24;
+    if (isAbs) {
+      res = Math.abs(res);
+    }
+    return res.toString().padStart(2, '0');
+  }
+
+  private diffMinuteZeroPadding(a: Dayjs, b: Dayjs, isAbs = false): string {
+    let res = a.diff(b, 'minute') % 60;
+    if (isAbs) {
+      res = Math.abs(res);
+    }
+    return res.toString().padStart(2, '0');
   }
 }
