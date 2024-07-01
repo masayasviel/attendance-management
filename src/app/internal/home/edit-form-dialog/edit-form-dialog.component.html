@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Delete file</h2>
+<mat-dialog-content>
+    <div class="form-content">
+    <mat-form-field appearance="outline">
+        <mat-label>Outline form field</mat-label>
+        <input matInput [formControl]="startFormControl" placeholder="Placeholder">
+        <mat-hint>Hint</mat-hint>
+        @if (startFormControl.hasError('email')){
+            <mat-error>aaaaa</mat-error>
+        }
+      </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>No</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+
