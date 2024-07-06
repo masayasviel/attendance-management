@@ -45,6 +45,10 @@ export class InternalFacade {
     this.store.dispatch(InternalActions.updateAttendanceData(param));
   }
 
+  deleteAttendanceData(date: string): void {
+    this.store.dispatch(InternalActions.deleteAttendanceData({ date }));
+  }
+
   assetTestData(): void {
     this.store.dispatch(InternalActions.assetMockData());
   }

@@ -163,6 +163,11 @@ export const InternalReducer = createReducer(
       records: newRecords,
     };
   }),
+  // 削除
+  on(InternalAction.deleteAttendanceData, (state, { date }) => ({
+    ...state,
+    records: (state.records ?? []).filter((record) => record.date !== date),
+  })),
   // リセット
   on(InternalAction.reset, () => initialState),
   // テストデータの挿入

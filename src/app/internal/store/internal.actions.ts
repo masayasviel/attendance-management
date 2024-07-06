@@ -11,6 +11,8 @@ export const updateAttendanceData = createAction(
   '[Internal Page] Update Attendance Data',
   props<DialogEditInputInterface>(),
 );
+/** 削除 */
+export const deleteAttendanceData = createAction('[Internal Page] Delete Attendance Data', props<{ date: string }>());
 
 /** テストデータ作成 */
 export const assetMockData = createAction('[Test] Create Mock Data');

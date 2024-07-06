@@ -49,6 +49,6 @@ export class HomeComponent implements OnInit {
   }
 
   onClickDeleteButton(date: string): void {
-    console.log(`on click delete button date = ${date}`);
+    this.internalFacade.deleteAttendanceData(date);
   }
 }
