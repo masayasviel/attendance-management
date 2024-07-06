@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="p-2">
   <app-attendance-table
     [records]="(records$ | async) ?? []"
     (emitOnClickRow)="onClickRow($event)"
