@@ -142,6 +142,27 @@ export const InternalReducer = createReducer(
       records: [...currentState, newRecord],
     };
   }),
+  // 更新
+  on(InternalAction.updateAttendanceData, (state, param) => {
+    const newRecords = (state.records ?? []).map((record) => {
+      if (record.date === param.date) {
+        return {
+          date: param.date,
+          start: param.start.format(),
+          finish: param.finish?.format() ?? null,
+          adjustment: {
+            hour: param.hour,
+            minute: param.minute,
+          },
+        };
+      }
+      return record;
+    });
+    return {
+      ...state,
+      records: newRecords,
+    };
+  }),
   // リセット
   on(InternalAction.reset, () => initialState),
   // テストデータの挿入

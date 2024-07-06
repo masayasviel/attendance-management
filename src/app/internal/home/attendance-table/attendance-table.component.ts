@@ -15,7 +15,7 @@ import { DayjsFormatPipe } from '../../pipe/dayjs-format.pipe';
 export class AttendanceTableComponent {
   records = input.required<RecordInterface[]>();
   emitOnClickDelete = output<string>();
-  emitOnClickRow = output<string>();
+  emitOnClickRow = output<RecordInterface>();
   protected readonly displayedColumns = [
     'date',
     'start',
@@ -41,7 +41,7 @@ export class AttendanceTableComponent {
   }
 
   onClickRow(record: RecordInterface) {
-    this.emitOnClickRow.emit(record.date);
+    this.emitOnClickRow.emit(record);
   }
 
   onClickDeleteButton($event: MouseEvent, record: RecordInterface) {
