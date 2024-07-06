@@ -1,26 +1,36 @@
 <div class="p-2">
   <div mat-dialog-title>編集 ({{ dialogData.date }})</div>
   <mat-dialog-content class="grid justify-content-center gap-3 p-2">
-    <mat-form-field appearance="outline" class="col-6">
-      <mat-label>出勤時間</mat-label>
-      <input
-        matInput
-        type="time"
-        [formControl]="startFormControl"
-      >
-      @if (startFormControl.hasError('required')){
-        <mat-error>この項目は必須です</mat-error>
-      }
-    </mat-form-field>
+    <div class="col-12">
+      <div class="grid">
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>出勤時間</mat-label>
+          <input
+            matInput
+            type="time"
+            [formControl]="startFormControl"
+          >
+          @if (startFormControl.hasError('required')){
+            <mat-error>この項目は必須です</mat-error>
+          }
+          @else if (startFormControl.hasError('failedValue')){
+            <mat-error>退勤時間を出勤時間より前にできません</mat-error>
+          }
+        </mat-form-field>
 
-    <mat-form-field appearance="outline" class="col-6">
-      <mat-label>退勤時間</mat-label>
-      <input
-        matInput
-        type="time"
-        [formControl]="finishFormControl"
-      >
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="col-6">
+          <mat-label>退勤時間</mat-label>
+          <input
+            matInput
+            type="time"
+            [formControl]="finishFormControl"
+          >
+          @if (finishFormControl.hasError('failedValue')){
+            <mat-error>退勤時間を出勤時間より前にできません</mat-error>
+          }
+        </mat-form-field>
+      </div>
+    </div>
 
     <mat-form-field appearance="outline" class="col-6">
       <mat-label>調整(時間)</mat-label>

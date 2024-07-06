@@ -1,5 +1,5 @@
 import { Component, type OnInit, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, type ValidatorFn, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -53,6 +53,8 @@ export class EditFormDialogComponent implements OnInit {
     this.finishFormControl.setValue(finish?.format('HH:mm') ?? null);
     this.deltaHourFormControl.setValue(this.dialogData.hour);
     this.deltaMinuteFormControl.setValue(this.dialogData.minute);
+    // validator内でdialogDataを参照しているためカリー化して後からセット
+    this.formGroup.setValidators(this.validateFormGroup());
   }
 
   onClickUpdateButton(): void {
@@ -68,5 +70,26 @@ export class EditFormDialogComponent implements OnInit {
 
   onClickCloseButton(): void {
     this.dialogRef.close(null);
+  }
+
+  private validateFormGroup(): ValidatorFn {
+    return (formGroup) => {
+      const { start, finish } = formGroup.getRawValue();
+      if (finish == null) {
+        this.startFormControl.setErrors(null);
+        this.finishFormControl.setErrors(null);
+        return null;
+      }
+      const startDate = dayjs(`${this.dialogData.date} ${start}`);
+      const finishDate = dayjs(`${this.dialogData.date} ${finish}`);
+      if (finishDate.diff(startDate) < 0) {
+        this.startFormControl.setErrors({ failedValue: true });
+        this.finishFormControl.setErrors({ failedValue: true });
+        return { failedValue: true };
+      }
+      this.startFormControl.setErrors(null);
+      this.finishFormControl.setErrors(null);
+      return null;
+    };
   }
 }
