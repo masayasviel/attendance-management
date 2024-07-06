@@ -2,6 +2,7 @@ import { AsyncPipe } from '@angular/common';
 import { Component, type OnInit, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { filter } from 'rxjs';
 import type { DialogEditInputInterface } from '../interfaces/input.interface';
 import type { RecordInterface } from '../interfaces/record.interface';
@@ -17,6 +18,7 @@ import { EditFormDialogComponent } from './edit-form-dialog/edit-form-dialog.com
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
+  private snackbar = inject(MatSnackBar);
   private dialog = inject(MatDialog);
   private internalFacade = inject(InternalFacade);
 
@@ -44,11 +46,13 @@ export class HomeComponent implements OnInit {
       .pipe(filter((v): v is DialogEditInputInterface => v != null))
       .subscribe((v) => {
         this.internalFacade.updateAttendanceData(v);
+        this.snackbar.open('更新しました', 'Done', { duration: 3000 });
         dialogSubscribe.unsubscribe();
       });
   }
 
   onClickDeleteButton(date: string): void {
     this.internalFacade.deleteAttendanceData(date);
+    this.snackbar.open('削除しました', 'Done', { duration: 3000 });
   }
 }
