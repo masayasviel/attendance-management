@@ -10,5 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class HeaderComponent {
   emitAttendanceAtWork = output<void>();
+  emitLeavingWork = output<void>();
   emitReset = output<void>();
 }

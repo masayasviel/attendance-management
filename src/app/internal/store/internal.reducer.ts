@@ -142,6 +142,28 @@ export const InternalReducer = createReducer(
       records: [...currentState, newRecord],
     };
   }),
+  on(InternalAction.setLeavingWork, (state) => {
+    const target = (state.records ?? []).at(-1);
+    if (!target) {
+      return { ...state };
+    }
+    return {
+      ...state,
+      records: (state.records ?? []).map((record) => {
+        if (record.date === target.date) {
+          return {
+            ...target,
+            finish: dayjs().tz().format(),
+            adjustment: {
+              hour: 9,
+              minute: 0,
+            },
+          };
+        }
+        return record;
+      }),
+    };
+  }),
   // 更新
   on(InternalAction.updateAttendanceData, (state, param) => {
     const newRecords = (state.records ?? []).map((record) => {

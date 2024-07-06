@@ -49,6 +49,10 @@ export class InternalFacade {
     this.store.dispatch(InternalActions.deleteAttendanceData({ date }));
   }
 
+  setLeavingWork(): void {
+    this.store.dispatch(InternalActions.setLeavingWork());
+  }
+
   assetTestData(): void {
     this.store.dispatch(InternalActions.assetMockData());
   }

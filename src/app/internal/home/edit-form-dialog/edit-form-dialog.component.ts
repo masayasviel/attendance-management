@@ -65,4 +65,8 @@ export class EditFormDialogComponent implements OnInit {
       minute: formValue.deltaMinute,
     });
   }
+
+  onClickCloseButton(): void {
+    this.dialogRef.close(null);
+  }
 }

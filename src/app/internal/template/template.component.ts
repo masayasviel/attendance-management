@@ -26,6 +26,15 @@ export class TemplateComponent {
     this.internalFacade.setAttendanceAtWork();
   }
 
+  leavingWork(): void {
+    const signalRecord = this.internalFacade.signalRecords();
+    if (signalRecord.length > 0 && signalRecord.at(-1)?.finish) {
+      this.snackbar.open('出勤中のレコードがありません', 'Done', { duration: 3000 });
+      return;
+    }
+    this.internalFacade.setLeavingWork();
+  }
+
   /** リセット */
   reset(): void {
     this.internalFacade.reset();
