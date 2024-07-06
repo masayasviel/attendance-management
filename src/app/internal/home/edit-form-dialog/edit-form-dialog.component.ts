@@ -1,10 +1,12 @@
-import { Component, type OnDestroy, type OnInit } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { Component, type OnInit, inject } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import dayjs from 'dayjs';
+
+import type { DialogEditInputInterface } from '../../interfaces/input.interface';
 
 @Component({
   selector: 'app-edit-form-dialog',
@@ -13,23 +15,54 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit-form-dialog.component.html',
   styleUrl: './edit-form-dialog.component.scss',
 })
-export class EditFormDialogComponent implements OnInit, OnDestroy {
-  private subscription = new Subscription();
+export class EditFormDialogComponent implements OnInit {
+  readonly dialogRef = inject(MatDialogRef<EditFormDialogComponent>);
+  readonly dialogData = inject<DialogEditInputInterface>(MAT_DIALOG_DATA);
+  readonly HOUR = 23;
+  readonly MINUTE = 59;
 
   startFormControl = new FormControl<string>('', {
     nonNullable: true,
-    validators: [Validators.email],
+    validators: [Validators.required],
+  });
+
+  finishFormControl = new FormControl<string | null>(null, {
+    nonNullable: false,
+  });
+
+  deltaHourFormControl = new FormControl<number>(0, {
+    nonNullable: true,
+    validators: [Validators.required, Validators.min(-this.HOUR), Validators.max(this.HOUR)],
+  });
+
+  deltaMinuteFormControl = new FormControl<number>(0, {
+    nonNullable: true,
+    validators: [Validators.required, Validators.min(-this.MINUTE), Validators.max(this.MINUTE)],
+  });
+
+  formGroup = new FormGroup({
+    start: this.startFormControl,
+    finish: this.finishFormControl,
+    deltaHour: this.deltaHourFormControl,
+    deltaMinute: this.deltaMinuteFormControl,
   });
 
   ngOnInit(): void {
-    this.subscription.add(
-      this.startFormControl.valueChanges.subscribe((value) => {
-        console.log(value);
-      }),
-    );
+    this.startFormControl.setValue(this.dialogData.start.format('HH:mm'));
+    const finish = this.dialogData.finish;
+    this.finishFormControl.setValue(finish?.format('HH:mm') ?? null);
+    this.deltaHourFormControl.setValue(this.dialogData.hour);
+    this.deltaMinuteFormControl.setValue(this.dialogData.minute);
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  onClickUpdateButton(): void {
+    const formValue = this.formGroup.getRawValue();
+    this.dialogRef.close({
+      date: this.dialogData.date,
+      start: dayjs(`${this.dialogData.date} ${formValue.start}`),
+      finish: formValue.finish && dayjs(`${this.dialogData.date} ${formValue.finish}`),
+      hour: formValue.deltaHour,
+      minute: formValue.deltaMinute,
+    });
   }
 }
