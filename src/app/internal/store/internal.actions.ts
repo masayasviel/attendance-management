@@ -15,11 +15,6 @@ export const updateAttendanceData = createAction(
 );
 /** 削除 */
 export const deleteAttendanceData = createAction('[Internal Page] Delete Attendance Data', props<{ date: string }>());
-/** 欠勤数 */
-export const updateAbsenteeismCount = createAction(
-  '[Internal Page] Update Absentees Count',
-  props<{ count: number }>(),
-);
 
 /** テストデータ作成 */
 export const assetMockData = createAction('[Test] Create Mock Data');
