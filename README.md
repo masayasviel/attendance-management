@@ -13,6 +13,12 @@ npm i
 ng serve
 ```
 
+# Deploy
+
+```sh
+npm run build-and-deploy
+```
+
 # Linting, formatting
 
 ```sh
