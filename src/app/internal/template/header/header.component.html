@@ -2,6 +2,13 @@
   <h1>勤怠管理</h1>
 
   <div class="flex-row justify-content-around align-content-center gap-2">
+    <mat-form-field appearance="outline">
+      <mat-label>Input</mat-label>
+      <input
+        matInput
+        [formControl]="sumFormControl"
+      >
+    </mat-form-field>
     <button mat-button (click)="emitAttendanceAtWork.emit()">出勤</button>
     <button mat-button (click)="emitLeavingWork.emit()">退勤</button>
     <button mat-button (click)="emitReset.emit()">リセット</button>

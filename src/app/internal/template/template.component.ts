@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
@@ -8,13 +9,14 @@ import { HeaderComponent } from './header/header.component';
 @Component({
   selector: 'app-template',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent],
+  imports: [RouterOutlet, HeaderComponent, AsyncPipe],
   templateUrl: './template.component.html',
   styleUrl: './template.component.scss',
 })
 export class TemplateComponent {
   private internalFacade = inject(InternalFacade);
   private snackbar = inject(MatSnackBar);
+  sum$ = this.internalFacade.sum$;
 
   /** 出勤 */
   attendanceAtWork(): void {

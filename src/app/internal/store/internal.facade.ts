@@ -6,7 +6,7 @@ import type { DialogEditInputInterface } from '../interfaces/input.interface';
 import type { RecordInterface } from '../interfaces/record.interface';
 import * as InternalActions from './internal.actions';
 import type { RecordInterfaceForState } from './internal.reducer';
-import { selectRecords } from './internal.selector';
+import { selectRecords, selectSumMilliseconds } from './internal.selector';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +32,17 @@ export class InternalFacade {
   );
 
   signalRecords = this.store.selectSignal(selectRecords);
+
+  sum$ = this.store.select(selectSumMilliseconds).pipe(
+    map((sum) => {
+      const hours = (sum / 1000 / 60 / 60) | 0;
+      const zeroPaddingHour = Math.abs(hours).toString().padStart(2, '0');
+      const minutes = ((sum / 1000 / 60) | 0) % 60;
+      const zeroPaddingMinutes = Math.abs(minutes).toString().padStart(2, '0');
+      const ope = sum >= 0 ? '+' : '-';
+      return `${ope}${zeroPaddingHour}:${zeroPaddingMinutes}`;
+    }),
+  );
 
   reset(): void {
     this.store.dispatch(InternalActions.reset());
@@ -78,7 +89,7 @@ export class InternalFacade {
     const diffMilliSecond = diff.diff(start);
     const zeroPaddingDiffHour = this.diffHourZeroPadding(diff, start, true);
     const zeroPaddingDiffMinute = this.diffMinuteZeroPadding(diff, start, true);
-    const ope = diffMilliSecond > 0 ? '+' : '-';
+    const ope = diffMilliSecond >= 0 ? '+' : '-';
     return `${ope}${zeroPaddingDiffHour}:${zeroPaddingDiffMinute}`;
   }
 
