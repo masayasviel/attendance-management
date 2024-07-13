@@ -6,7 +6,7 @@ import type { DialogEditInputInterface } from '../interfaces/input.interface';
 import type { RecordInterface } from '../interfaces/record.interface';
 import * as InternalActions from './internal.actions';
 import type { RecordInterfaceForState } from './internal.reducer';
-import { selectRecords, selectSumMilliseconds } from './internal.selector';
+import { selectAbsenteeismCount, selectRecords, selectSumMilliseconds } from './internal.selector';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +43,8 @@ export class InternalFacade {
       return `${ope}${zeroPaddingHour}:${zeroPaddingMinutes}`;
     }),
   );
+
+  signalAbsenteeismCount = this.store.selectSignal(selectAbsenteeismCount);
 
   reset(): void {
     this.store.dispatch(InternalActions.reset());

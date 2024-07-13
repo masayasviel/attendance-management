@@ -190,6 +190,11 @@ export const InternalReducer = createReducer(
     ...state,
     records: (state.records ?? []).filter((record) => record.date !== date),
   })),
+  // 欠勤数更新
+  on(InternalAction.updateAbsenteeismCount, (state, { count }) => ({
+    ...state,
+    absenteeismCount: count,
+  })),
   // リセット
   on(InternalAction.reset, () => initialState),
   // テストデータの挿入

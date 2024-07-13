@@ -3,14 +3,34 @@
 
   <div class="flex-row justify-content-around align-content-center gap-2">
     <mat-form-field appearance="outline">
-      <mat-label>Input</mat-label>
+      <mat-label>欠勤数</mat-label>
+      <input
+        matInput
+        type="number"
+        [formControl]="absenteeismCountFormControl"
+        [required]="true"
+        [max]="ABSENTEEISM_COUNT_MAX"
+        [min]="ABSENTEEISM_COUNT_MIN"
+      >
+      @if (absenteeismCountFormControl.hasError("required")) {
+        <mat-error>この項目は必須です</mat-error>
+      } @else if (absenteeismCountFormControl.hasError("min")) {
+        <mat-error>値が小さすぎます</mat-error>
+      } @else if (absenteeismCountFormControl.hasError("max")) {
+        <mat-error>値が大きすぎます</mat-error>
+      } @else if (absenteeismCountFormControl.hasError("pattern")) {
+        <mat-error>0以上の整数で入力してください</mat-error>
+      }
+    </mat-form-field>
+    <button mat-button (click)="emitAttendanceAtWork.emit()">出勤</button>
+    <button mat-button (click)="emitLeavingWork.emit()">退勤</button>
+    <button mat-button (click)="emitReset.emit()">リセット</button>
+    <mat-form-field appearance="outline">
+      <mat-label>勤怠時間</mat-label>
       <input
         matInput
         [formControl]="sumFormControl"
       >
     </mat-form-field>
-    <button mat-button (click)="emitAttendanceAtWork.emit()">出勤</button>
-    <button mat-button (click)="emitLeavingWork.emit()">退勤</button>
-    <button mat-button (click)="emitReset.emit()">リセット</button>
   </div>
 </div>

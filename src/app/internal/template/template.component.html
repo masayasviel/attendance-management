@@ -1,5 +1,6 @@
 <app-header
   [sum]="(sum$ | async) ?? '+00:00'"
+  [absenteeismCount]="absenteeismCount()"
   (emitAttendanceAtWork)="attendanceAtWork()"
   (emitLeavingWork)="leavingWork()"
   (emitReset)="reset()"

@@ -17,6 +17,7 @@ export class TemplateComponent {
   private internalFacade = inject(InternalFacade);
   private snackbar = inject(MatSnackBar);
   sum$ = this.internalFacade.sum$;
+  absenteeismCount = this.internalFacade.signalAbsenteeismCount;
 
   /** 出勤 */
   attendanceAtWork(): void {
