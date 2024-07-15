@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, type OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,17 +17,12 @@ import { EditFormDialogComponent } from './edit-form-dialog/edit-form-dialog.com
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   private snackbar = inject(MatSnackBar);
   private dialog = inject(MatDialog);
   private internalFacade = inject(InternalFacade);
 
   protected records$ = this.internalFacade.recordsConvertToDate$;
-
-  ngOnInit(): void {
-    this.internalFacade.assetTestData();
-  }
-
   onClickRow(param: RecordInterface): void {
     const dialogSubscribe = this.dialog
       .open<EditFormDialogComponent, DialogEditInputInterface, DialogEditInputInterface>(EditFormDialogComponent, {

@@ -66,8 +66,8 @@ export class InternalFacade {
     this.store.dispatch(InternalActions.setLeavingWork());
   }
 
-  assetTestData(): void {
-    this.store.dispatch(InternalActions.assetMockData());
+  setAbsenteeismCount(v: number): void {
+    this.store.dispatch(InternalActions.updateAbsenteeismCount({ count: v }));
   }
 
   private computeWorkingHour(start: Dayjs, finish: Dayjs | null): string {

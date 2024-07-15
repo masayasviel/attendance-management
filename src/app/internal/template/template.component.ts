@@ -43,6 +43,10 @@ export class TemplateComponent {
     this.internalFacade.reset();
   }
 
+  setAbsenteeismCount(v: number): void {
+    this.internalFacade.setAbsenteeismCount(v);
+  }
+
   /** 出勤できるか確認とできない場合はその理由 */
   private isEnableAttendanceAtWorkGetAlertMessage(): string | null {
     const signalRecord = this.internalFacade.signalRecords();

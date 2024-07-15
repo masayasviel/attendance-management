@@ -3,7 +3,7 @@ import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   emitAttendanceAtWork = output<void>();
   emitLeavingWork = output<void>();
   emitReset = output<void>();
+  emitAbsenteeismCount = output<number>();
 
   sumFormControl = new FormControl<string>('');
   absenteeismCountFormControl = new FormControl<number>(0, {
@@ -37,16 +38,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor() {
     effect(() => {
       this.sumFormControl.setValue(this.sum());
-      this.absenteeismCountFormControl.setValue(this.absenteeismCount(), { emitEvent: false });
     });
   }
 
   ngOnInit(): void {
     this.sumFormControl.disable();
+    this.absenteeismCountFormControl.setValue(this.absenteeismCount(), { emitEvent: false });
     this.subscriptions.add(
-      this.absenteeismCountFormControl.valueChanges.subscribe(() => {
-        console.log(this.absenteeismCountFormControl.valid);
-      }),
+      this.absenteeismCountFormControl.valueChanges
+        .pipe(filter(() => this.absenteeismCountFormControl.valid))
+        .subscribe((v) => {
+          this.emitAbsenteeismCount.emit(v);
+        }),
     );
   }
 
