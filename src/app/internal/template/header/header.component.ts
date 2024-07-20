@@ -38,12 +38,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor() {
     effect(() => {
       this.sumFormControl.setValue(this.sum());
+      this.absenteeismCountFormControl.setValue(this.absenteeismCount(), { emitEvent: false });
     });
   }
 
   ngOnInit(): void {
     this.sumFormControl.disable();
-    this.absenteeismCountFormControl.setValue(this.absenteeismCount(), { emitEvent: false });
     this.subscriptions.add(
       this.absenteeismCountFormControl.valueChanges
         .pipe(filter(() => this.absenteeismCountFormControl.valid))
