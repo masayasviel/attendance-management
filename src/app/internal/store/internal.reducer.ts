@@ -62,7 +62,7 @@ export const InternalReducer = createReducer(
             ...target,
             finish: dayjs().tz().format(),
             adjustment: {
-              hour: 9,
+              hour: 8,
               minute: 0,
             },
           };
