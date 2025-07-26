@@ -6,11 +6,10 @@ import type { RecordInterface } from '../../interfaces/record.interface';
 import { DayjsFormatPipe } from '../../pipe/dayjs-format.pipe';
 
 @Component({
-  selector: 'app-attendance-table',
-  standalone: true,
-  imports: [MatButtonModule, MatTableModule, MatIconModule, DayjsFormatPipe],
-  templateUrl: './attendance-table.component.html',
-  styleUrl: './attendance-table.component.scss',
+    selector: 'app-attendance-table',
+    imports: [MatButtonModule, MatTableModule, MatIconModule, DayjsFormatPipe],
+    templateUrl: './attendance-table.component.html',
+    styleUrl: './attendance-table.component.scss'
 })
 export class AttendanceTableComponent {
   records = input.required<RecordInterface[]>();

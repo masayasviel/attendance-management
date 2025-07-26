@@ -11,11 +11,10 @@ import { AttendanceTableComponent } from './attendance-table/attendance-table.co
 import { EditFormDialogComponent } from './edit-form-dialog/edit-form-dialog.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [AttendanceTableComponent, MatCardModule, AsyncPipe],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [AttendanceTableComponent, MatCardModule, AsyncPipe],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   private snackbar = inject(MatSnackBar);

@@ -7,11 +7,10 @@ import { InternalFacade } from '../store/internal.facade';
 import { HeaderComponent } from './header/header.component';
 
 @Component({
-  selector: 'app-template',
-  standalone: true,
-  imports: [RouterOutlet, HeaderComponent, AsyncPipe],
-  templateUrl: './template.component.html',
-  styleUrl: './template.component.scss',
+    selector: 'app-template',
+    imports: [RouterOutlet, HeaderComponent, AsyncPipe],
+    templateUrl: './template.component.html',
+    styleUrl: './template.component.scss'
 })
 export class TemplateComponent {
   private internalFacade = inject(InternalFacade);
