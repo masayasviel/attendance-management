@@ -29,7 +29,7 @@ ng lint --fix
 
 ### vscode
 
-extensionの通りにインストール
+@recommendedの通りにインストール
 
 ### webstorm
 
