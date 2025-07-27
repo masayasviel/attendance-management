@@ -22,18 +22,19 @@ npm run build-and-deploy
 # Linting, formatting
 
 ```sh
-npx @biomejs/biome lint --write ./src
-npx @biomejs/biome format --write ./src
+ng lint --fix
 ```
 
-# Editor
+## Editor
 
-## vscode
+### vscode
 
-1. [Biome VS Code extension](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)をインストール
+extensionの通りにインストール
 
-## IntelliJ
+### webstorm
 
-1. biomeプラグインをインストール
-2. 設定 > 言語&フレームワーク > biome
-3. `Run ** on save` にすべてチェック
+下記2つの保存時フォーマットをON
+PrettierはHTMLを対象に含める
+
+- 設定 > JavaScript > コード品質ツール > ESLint
+- 設定 > JavaScript > Prettier
