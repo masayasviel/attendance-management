@@ -3,14 +3,16 @@ import { Component, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RouterOutlet } from '@angular/router';
 import dayjs from 'dayjs';
-import { InternalFacade } from '../store/internal.facade';
+
 import { HeaderComponent } from './header/header.component';
 
+import { InternalFacade } from '../store/internal.facade';
+
 @Component({
-    selector: 'app-template',
-    imports: [RouterOutlet, HeaderComponent, AsyncPipe],
-    templateUrl: './template.component.html',
-    styleUrl: './template.component.scss'
+  selector: 'app-template',
+  imports: [RouterOutlet, HeaderComponent, AsyncPipe],
+  templateUrl: './template.component.html',
+  styleUrl: './template.component.scss',
 })
 export class TemplateComponent {
   private internalFacade = inject(InternalFacade);

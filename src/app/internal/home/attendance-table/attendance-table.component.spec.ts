@@ -2,6 +2,8 @@ import { type ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AttendanceTableComponent } from './attendance-table.component';
 
+
+
 describe('AttendanceTableComponent', () => {
   let component: AttendanceTableComponent;
   let fixture: ComponentFixture<AttendanceTableComponent>;

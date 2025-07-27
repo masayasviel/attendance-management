@@ -1,52 +1,45 @@
 <mat-table [dataSource]="dataSource">
-
   <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef> 日付 </th>
-    <td mat-cell *matCellDef="let element"> {{ element.date }} </td>
+    <th *matHeaderCellDef mat-header-cell>日付</th>
+    <td *matCellDef="let element" mat-cell>{{ element.date }}</td>
   </ng-container>
 
   <ng-container matColumnDef="start">
-    <th mat-header-cell *matHeaderCellDef> 出勤 </th>
-    <td mat-cell *matCellDef="let element"> {{ element.start | dayjsFormat }} </td>
+    <th *matHeaderCellDef mat-header-cell>出勤</th>
+    <td *matCellDef="let element" mat-cell>{{ element.start | dayjsFormat }}</td>
   </ng-container>
 
   <ng-container matColumnDef="finish">
-    <th mat-header-cell *matHeaderCellDef> 退勤 </th>
-    <td mat-cell *matCellDef="let element"> {{ element.finish | dayjsFormat }} </td>
+    <th *matHeaderCellDef mat-header-cell>退勤</th>
+    <td *matCellDef="let element" mat-cell>{{ element.finish | dayjsFormat }}</td>
   </ng-container>
 
   <ng-container matColumnDef="workingHour">
-    <th mat-header-cell *matHeaderCellDef> 勤務時間 </th>
-    <td mat-cell *matCellDef="let element">
+    <th *matHeaderCellDef mat-header-cell>勤務時間</th>
+    <td *matCellDef="let element" mat-cell>
       {{ element.workingHour }}
     </td>
   </ng-container>
 
   <ng-container matColumnDef="adjustment">
-    <th mat-header-cell *matHeaderCellDef> 調整分</th>
-    <td mat-cell *matCellDef="let element"> {{ displayAdjustment(element) }} </td>
+    <th *matHeaderCellDef mat-header-cell>調整分</th>
+    <td *matCellDef="let element" mat-cell>{{ displayAdjustment(element) }}</td>
   </ng-container>
 
   <ng-container matColumnDef="difference">
-    <th mat-header-cell *matHeaderCellDef> 差分 </th>
-    <td mat-cell *matCellDef="let element"> {{element.difference}} </td>
+    <th *matHeaderCellDef mat-header-cell>差分</th>
+    <td *matCellDef="let element" mat-cell>{{ element.difference }}</td>
   </ng-container>
 
   <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef> 削除 </th>
-    <td mat-cell *matCellDef="let element">
+    <th *matHeaderCellDef mat-header-cell>削除</th>
+    <td *matCellDef="let element" mat-cell>
       <button mat-icon-button (click)="onClickDeleteButton($event, element)">
         <mat-icon>delete</mat-icon>
       </button>
     </td>
   </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    mat-row
-    class="table-row"
-    *matRowDef="let row; columns: displayedColumns;"
-    (click)="onClickRow(row)"
-  ></tr>
+  <tr *matHeaderRowDef="displayedColumns" mat-header-row></tr>
+  <tr *matRowDef="let row; columns: displayedColumns" mat-row class="table-row" (click)="onClickRow(row)"></tr>
 </mat-table>
-

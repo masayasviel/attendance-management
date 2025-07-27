@@ -9,10 +9,10 @@ import dayjs from 'dayjs';
 import type { DialogEditInputInterface } from '../../interfaces/input.interface';
 
 @Component({
-    selector: 'app-edit-form-dialog',
-    imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
-    templateUrl: './edit-form-dialog.component.html',
-    styleUrl: './edit-form-dialog.component.scss'
+  selector: 'app-edit-form-dialog',
+  imports: [MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule, ReactiveFormsModule],
+  templateUrl: './edit-form-dialog.component.html',
+  styleUrl: './edit-form-dialog.component.scss',
 })
 export class EditFormDialogComponent implements OnInit {
   readonly dialogRef = inject(MatDialogRef<EditFormDialogComponent>);

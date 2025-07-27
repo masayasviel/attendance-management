@@ -5,27 +5,18 @@
       <div class="grid">
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>出勤時間</mat-label>
-          <input
-            matInput
-            type="time"
-            [formControl]="startFormControl"
-          >
-          @if (startFormControl.hasError('required')){
+          <input matInput type="time" [formControl]="startFormControl" />
+          @if (startFormControl.hasError('required')) {
             <mat-error>この項目は必須です</mat-error>
-          }
-          @else if (startFormControl.hasError('failedValue')){
+          } @else if (startFormControl.hasError('failedValue')) {
             <mat-error>退勤時間を出勤時間より前にできません</mat-error>
           }
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="col-6">
           <mat-label>退勤時間</mat-label>
-          <input
-            matInput
-            type="time"
-            [formControl]="finishFormControl"
-          >
-          @if (finishFormControl.hasError('failedValue')){
+          <input matInput type="time" [formControl]="finishFormControl" />
+          @if (finishFormControl.hasError('failedValue')) {
             <mat-error>退勤時間を出勤時間より前にできません</mat-error>
           }
         </mat-form-field>
@@ -34,13 +25,7 @@
 
     <mat-form-field appearance="outline" class="col-6">
       <mat-label>調整(時間)</mat-label>
-      <input
-        matInput
-        type="number"
-        [formControl]="deltaHourFormControl"
-        [max]="HOUR"
-        [min]="-HOUR"
-      >
+      <input matInput type="number" [formControl]="deltaHourFormControl" [max]="HOUR" [min]="-HOUR" />
       @if (deltaHourFormControl.hasError('required')) {
         <mat-error>この項目は必須です</mat-error>
       } @else if (deltaHourFormControl.hasError('max')) {
@@ -52,14 +37,8 @@
 
     <mat-form-field appearance="outline" class="col-6">
       <mat-label>調整(分)</mat-label>
-      <input
-        matInput
-        type="number"
-        [formControl]="deltaMinuteFormControl"
-        [max]="MINUTE"
-        [min]="-MINUTE"
-      >
-      @if (deltaMinuteFormControl.hasError('required')){
+      <input matInput type="number" [formControl]="deltaMinuteFormControl" [max]="MINUTE" [min]="-MINUTE" />
+      @if (deltaMinuteFormControl.hasError('required')) {
         <mat-error>この項目は必須です</mat-error>
       } @else if (deltaMinuteFormControl.hasError('max')) {
         <mat-error>値が大きすぎます</mat-error>
@@ -70,11 +49,6 @@
   </mat-dialog-content>
   <mat-dialog-actions>
     <button mat-button (click)="onClickCloseButton()">キャンセル</button>
-    <button
-      mat-button
-      [disabled]="formGroup.invalid"
-      (click)="onClickUpdateButton()"
-    >更新</button>
+    <button mat-button [disabled]="formGroup.invalid" (click)="onClickUpdateButton()">更新</button>
   </mat-dialog-actions>
 </div>
-

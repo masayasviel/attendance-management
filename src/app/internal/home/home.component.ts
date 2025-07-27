@@ -4,17 +4,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { filter } from 'rxjs';
-import type { DialogEditInputInterface } from '../interfaces/input.interface';
-import type { RecordInterface } from '../interfaces/record.interface';
-import { InternalFacade } from '../store/internal.facade';
+
 import { AttendanceTableComponent } from './attendance-table/attendance-table.component';
 import { EditFormDialogComponent } from './edit-form-dialog/edit-form-dialog.component';
 
+import type { DialogEditInputInterface } from '../interfaces/input.interface';
+import type { RecordInterface } from '../interfaces/record.interface';
+import { InternalFacade } from '../store/internal.facade';
+
 @Component({
-    selector: 'app-home',
-    imports: [AttendanceTableComponent, MatCardModule, AsyncPipe],
-    templateUrl: './home.component.html',
-    styleUrl: './home.component.scss'
+  selector: 'app-home',
+  imports: [AttendanceTableComponent, MatCardModule, AsyncPipe],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   private snackbar = inject(MatSnackBar);

@@ -2,11 +2,13 @@ import { Injectable, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
 import dayjs, { type Dayjs } from 'dayjs';
 import { type Observable, map } from 'rxjs';
-import type { DialogEditInputInterface } from '../interfaces/input.interface';
-import type { RecordInterface } from '../interfaces/record.interface';
+
 import * as InternalActions from './internal.actions';
 import type { RecordInterfaceForState } from './internal.reducer';
 import { selectAbsenteeismCount, selectRecords, selectSumMilliseconds } from './internal.selector';
+
+import type { DialogEditInputInterface } from '../interfaces/input.interface';
+import type { RecordInterface } from '../interfaces/record.interface';
 
 @Injectable({
   providedIn: 'root',

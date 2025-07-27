@@ -2,14 +2,15 @@ import { Component, effect, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+
 import type { RecordInterface } from '../../interfaces/record.interface';
 import { DayjsFormatPipe } from '../../pipe/dayjs-format.pipe';
 
 @Component({
-    selector: 'app-attendance-table',
-    imports: [MatButtonModule, MatTableModule, MatIconModule, DayjsFormatPipe],
-    templateUrl: './attendance-table.component.html',
-    styleUrl: './attendance-table.component.scss'
+  selector: 'app-attendance-table',
+  imports: [MatButtonModule, MatTableModule, MatIconModule, DayjsFormatPipe],
+  templateUrl: './attendance-table.component.html',
+  styleUrl: './attendance-table.component.scss',
 })
 export class AttendanceTableComponent {
   records = input.required<RecordInterface[]>();
