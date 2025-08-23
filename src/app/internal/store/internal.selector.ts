@@ -20,6 +20,6 @@ export const selectSumMilliseconds = createSelector(selectAppFeature, (state) =>
     }
     return finish.subtract(v.adjustment.hour, 'hour').subtract(v.adjustment.minute, 'minute').diff(start);
   });
-  const absenteeismCountToMillisecond = absenteeismCount * 8 * 60 * 60 * 1000;
+  const absenteeismCountToMillisecond = absenteeismCount * 7 * 60 * 60 * 1000;
   return diffs.reduce((acc, cur) => acc + cur, 0) - absenteeismCountToMillisecond;
 });
